@@ -3,16 +3,46 @@ const toDoForm = document.querySelector(".js-toDoForm"),
   toDoList = document.querySelector(".js-toDoList");
 
 const TODOS_LS = "toDos";
-//발동하는 function 1.디폴트값 초기화 2.저장updatetodos
+
+function filterFn(toDo) {
+  return toDo.id === 1;
+}
+
+let toDos = [];
+
+function deleteToDo(event) {
+  const btn = event.target;
+  const li = btn.parentNode;
+  toDoList.removeChild(li);
+  const cleanToDos = toDos.filter(function(toDo) {
+    return toDo.id !== parseInt(li.id);
+  });
+  toDos = cleanToDos;
+  saveToDos();
+}
+
+function saveToDos() {
+  localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
+}
+
 function paintToDo(text) {
   const li = document.createElement("li");
   const delBtn = document.createElement("button");
-  delBtn.innerHTML = "X";
   const span = document.createElement("span");
+  const newId = toDos.length + 1;
+  delBtn.innerHTML = "X";
+  delBtn.addEventListener("click", deleteToDo);
   span.innerText = text;
-  li.appendChild(span);
   li.appendChild(delBtn);
+  li.appendChild(span);
+  li.id = newId;
   toDoList.appendChild(li);
+  const toDoObj = {
+    text: text,
+    id: newId
+  };
+  toDos.push(toDoObj);
+  saveToDos();
 }
 
 function handleSubmit(event) {
@@ -22,14 +52,18 @@ function handleSubmit(event) {
   toDoInput.value = "";
 }
 
-//submit하면 발동해야함
 function askForToDos() {
   toDoForm.addEventListener("submit", handleSubmit);
 }
-
+//이 부분 다시3-6
 function loadToDos() {
-  const toDos = localStorage.getItem(TODOS_LS);
-  if (toDos !== null) {
+  const loadedToDos = localStorage.getItem(TODOS_LS);
+  if (loadedToDos !== null) {
+    const parsedToDos = JSON.parse(loadedToDos);
+    console.log(parsedToDos);
+    parsedToDos.forEach(function(toDo) {
+      paintToDo(toDo.text);
+    });
   }
 }
 
@@ -39,4 +73,3 @@ function init() {
 }
 
 init();
-4;
