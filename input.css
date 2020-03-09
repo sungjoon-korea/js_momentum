@@ -1,0 +1,19 @@
+.toDoList_input {
+  color: #fff;
+}
+.toDoList_input h3 {
+  text-align: center;
+  font-size: 30px;
+}
+
+.toDoList_input .js-toDoInput {
+  padding-top: 4px;
+  width: 50%;
+  background: 0;
+  border: 0;
+  border-bottom: 3px solid #fff;
+  color: #fff;
+  text-align: center;
+  outline: 0;
+  font-size: 25px;
+}

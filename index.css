@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300:400,600&display=swap");
-
+@import "input.css";
 .form,
 .greetings {
   display: none;
@@ -34,13 +34,10 @@ body {
   color: #ffffff;
 }
 
-.js-form {
-  top: 0px;
-}
 .js-greetings {
-  top: 140px;
+  top: 160px;
   position: absolute;
-  font-size: xx-large;
+  font-size: 45px;
   margin-top: auto;
   text-align: center;
   /* display: block; */
@@ -68,4 +65,20 @@ body {
   height: 100%;
   z-index: -1;
   animation: fadeIn 0.5s linear;
+}
+
+.js-toDoList {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.js-toDoList li button {
+  background-color: rgb(216, 216, 53);
+  color: rgba(192, 16, 16, 0.959);
+  border: 0;
+  border-radius: 30px;
+}
+
+.js-greetings {
+  color: #ffffff;
 }
